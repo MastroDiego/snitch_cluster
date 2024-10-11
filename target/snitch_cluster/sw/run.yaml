@@ -4,7 +4,7 @@
 
 runs:
   - elf: tests/build/alias.elf
-    simulators: [vsim, vcs, verilator, gvsoc] # banshee does not model alias regions
+    simulators: [vsim, vcs, verilator] # banshee does not model alias regions
   - elf: tests/build/atomics.elf
     simulators: [vsim, vcs, verilator, gvsoc] # banshee fails with exit code 0x4
   - elf: tests/build/barrier.elf
@@ -72,8 +72,9 @@ runs:
   - elf: tests/build/non_null_exitcode.elf
     retcode: 56
   - elf: tests/build/caq.elf
+    simulators: [vsim, vcs, verilator, banshee] # GVSOC does not model caq
   - elf: tests/build/caq_frep.elf
-    simulators: [vsim, vcs, verilator, gvsoc] # banshee does not model FREP timing
+    simulators: [vsim, vcs, verilator] # banshee does not model FREP timing
   - elf: apps/blas/axpy/build/axpy.elf
     cmd: [../../../sw/blas/axpy/scripts/verify.py, "${sim_bin}", "${elf}"]
   - elf: apps/blas/gemm/build/gemm.elf
